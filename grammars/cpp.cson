@@ -1,0 +1,32 @@
+'scopeName': 'source.cpp'
+'name': 'C++'
+
+'fileTypes': [
+    'cpp'
+    'h'
+    'hpp'
+]
+
+# control keywords
+'patterns': [{
+  'match': '\\b(break|catch|continue|do|else|for|goto|if|return|try|while)\\b'
+  'name': 'keyword.control'
+},
+
+# storage types
+{
+  'match': '\\b(auto|bool|class|double|float|int|long|short|signed|struct|template|typedef|typename|unsigned|void)\\b'
+  'name': 'storage.type'
+},
+
+# storage modifiers
+{
+  'match': '\\b(const|register|static|volatile)\\b'
+  'name': 'storage.modifier'
+},
+
+# language constants
+{
+  'match': '\\b(false|nullptr|true)\\b'
+  'name': 'constant.language'
+}]
