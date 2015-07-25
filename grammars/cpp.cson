@@ -9,7 +9,7 @@
 
 # control keywords
 'patterns': [{
-  'match': '\\b(break|case|catch|const_cast|continue|default|delete|do|dynamic_cast|else|explicit|friend|for|goto|if|namespace|new|operator|private|protected|public|reinterpret_cast|return|sizeof|static_cast|switch|try|typedef|using|virtual|while)\\b'
+  'match': '\\b(break|case|catch|const_cast|continue|default|delete|do|dynamic_cast|else|explicit|friend|for|goto|if|inline|namespace|new|operator|private|protected|public|reinterpret_cast|return|sizeof|static_cast|switch|try|typedef|using|virtual|while)\\b'
   'name': 'keyword.control'
 },
 
@@ -97,20 +97,36 @@
 },
 
 {
-  'include': '#string'    
+  'include': '#string'
 }]
 
 'repository':
+  # doxygen keywords
+  'doxygen-keywords':
+    'match': '[@\\\\](author|authors|brief|class|details|file|note|param|ref|return|returns|struct|todo|tparam)\\b'
+    'name':  'comment.block.documentation'
+
+  # TODO: /// should be doxygen
   # line comment
   'line-comment':
     'match': '//.*$'
-    'name': 'comment.line'
+    'name': 'comment.line.double-slash'
 
   # block comment
   'block-comment':
-    'begin': '/\\*'
-    'end': '\\*/'
+    'begin': '(?=/\\*)'
+    'end': '(?<!/)\\*/'
     'name': 'comment.block'
+    # doxygen
+    'patterns': [{
+      # start with "/**" or "/*!" but not "/***"
+      'begin': '(?=/\\*(\\*[^\\*]|!))'
+      'end': '(?=\\*/)'
+      'name': 'meta.documentation'
+      'patterns': [{
+          'include': '#doxygen-keywords'
+      }]
+    }]
 
   # numeric literals
   'numeric-literals':
