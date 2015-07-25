@@ -94,6 +94,10 @@
 
 {
   'include': '#numeric-literals'
+},
+
+{
+  'include': '#string'    
 }]
 
 'repository':
@@ -117,3 +121,13 @@
   'language-constants':
     'match': '\\b(false|nullptr|true)\\b'
     'name': 'constant.language'
+
+  # string
+  'string':
+    'begin': '"'
+    'end': '"|\\n'
+    'name': 'string.quoted.double'
+    'patterns': [{
+      'match': '\\\\[abnrtvx\'"\\\\]'
+      'name':  'constant.character.escape'
+    }]
