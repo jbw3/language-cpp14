@@ -9,19 +9,40 @@
 
 # control keywords
 'patterns': [{
-  'match': '\\b(break|case|catch|const_cast|continue|default|delete|do|dynamic_cast|else|explicit|friend|for|goto|if|namespace|new|operator|private|protected|public|reinterpret_cast|return|sizeof|static_cast|switch|try|using|virtual|while)\\b'
+  'match': '\\b(break|case|catch|const_cast|continue|default|delete|do|dynamic_cast|else|explicit|friend|for|goto|if|namespace|new|operator|private|protected|public|reinterpret_cast|return|sizeof|static_cast|switch|try|typedef|using|virtual|while)\\b'
   'name': 'keyword.control'
 },
 
-# preprocessor keywords
+# preprocessor
 {
-  'match': '#\\s*(define|elif|else|endif|error|if|ifdef|ifndef|include|line|pragma|warning)\\b'
-  'name': 'keyword.control'
+  'begin': '(?=#)'
+  'end': '\\n'
+  'name': 'meta.preprocessor'
+
+  # keywords
+  'patterns': [{
+    'match': '#\\s*(define|elif|else|endif|error|if|ifdef|ifndef|include|line|pragma|warning)\\b'
+    'name': 'keyword.control'
+  },
+
+  # quotes highlight (e.g. #include "math.h")
+  {
+    'begin': '"'
+    'end': '"|\\n'
+    'name': 'string.quoted.other'
+  },
+
+  # angle brackets highlight (e.g. #include <cmath>)
+  {
+    'begin': '<'
+    'end': '>|\\n'
+    'name': 'string.quoted.other'
+  }]
 },
 
 # storage types
 {
-  'match': '\\b(auto|bool|char|class|double|enum|float|int|long|short|signed|struct|template|typedef|typename|unsigned|void)\\b'
+  'match': '\\b(auto|bool|char|class|double|enum|float|int|long|short|signed|struct|template|typename|union|unsigned|void)\\b'
   'name': 'storage.type'
 },
 
