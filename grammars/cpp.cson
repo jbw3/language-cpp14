@@ -21,6 +21,22 @@
 
   # keywords
   'patterns': [{
+    'include': '#line-comment'
+  },
+
+  {
+    'include': '#block-comment'
+  },
+
+  {
+    'include': '#numeric-literals'
+  },
+
+  {
+    'include': '#language-constants'
+  },
+
+  {
     'match': '#\\s*(define|elif|else|endif|error|if|ifdef|ifndef|include|line|pragma|warning)\\b'
     'name': 'keyword.control'
   },
@@ -46,16 +62,16 @@
   'name': 'storage.type'
 },
 
+# support types
+{
+  'match': '\\b(int8_t|int16_t|int32_t|int64_t|intmax_t|uint|uint8_t|uint16_t|uint32_t|uint64_t|uintmax_t)\\b'
+  'name': 'support.type'
+},
+
 # storage modifiers
 {
   'match': '\\b(const|register|static|volatile)\\b'
   'name': 'storage.modifier'
-},
-
-# language constants
-{
-  'match': '\\b(false|nullptr|true)\\b'
-  'name': 'constant.language'
 },
 
 # language variables
@@ -64,21 +80,40 @@
   'name': 'variable.language'
 },
 
-# block comment
 {
-  'begin': '/\\*'
-  'end': '\\*/'
-  'name': 'comment.block'
+  'include': '#language-constants'
 },
 
-# line comment
 {
-  'match': '//.*$'
-  'name': 'comment.line'
+  'include': '#block-comment'
 },
 
-# numeric literals
 {
-  'match': '\\b((\\d*\\.\\d+|\\d+\\.)[fFlL]?|(([1-9]\\d*|0[0-7]*|0[xX][\\da-fA-F]+)([lL][uU]?|[lL]{2}[uU]?|[uU][lL]{0,2})?))\\b'
-  'name': 'constant.numeric'
+  'include': '#line-comment'
+},
+
+{
+  'include': '#numeric-literals'
 }]
+
+'repository':
+  # line comment
+  'line-comment':
+    'match': '//.*$'
+    'name': 'comment.line'
+
+  # block comment
+  'block-comment':
+    'begin': '/\\*'
+    'end': '\\*/'
+    'name': 'comment.block'
+
+  # numeric literals
+  'numeric-literals':
+    'match': '\\b((\\d*\\.\\d+|\\d+\\.)[fFlL]?|(([1-9]\\d*|0[0-7]*|0[xX][\\da-fA-F]+)([lL][uU]?|[lL]{2}[uU]?|[uU][lL]{0,2})?))\\b'
+    'name': 'constant.numeric'
+
+  # language constants
+  'language-constants':
+    'match': '\\b(false|nullptr|true)\\b'
+    'name': 'constant.language'
