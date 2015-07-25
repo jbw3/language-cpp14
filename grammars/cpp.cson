@@ -1,5 +1,5 @@
 'scopeName': 'source.cpp'
-'name': 'C++'
+'name': 'C++14'
 
 'fileTypes': [
     'cpp'
@@ -9,13 +9,13 @@
 
 # control keywords
 'patterns': [{
-  'match': '\\b(break|catch|continue|do|else|for|goto|if|return|try|while)\\b'
+  'match': '\\b(break|case|catch|const_cast|continue|default|delete|do|dynamic_cast|else|explicit|friend|for|goto|if|namespace|new|operator|private|protected|public|reinterpret_cast|return|sizeof|static_cast|switch|try|using|virtual|while)\\b'
   'name': 'keyword.control'
 },
 
 # storage types
 {
-  'match': '\\b(auto|bool|class|double|float|int|long|short|signed|struct|template|typedef|typename|unsigned|void)\\b'
+  'match': '\\b(auto|bool|char|class|double|enum|float|int|long|short|signed|struct|template|typedef|typename|unsigned|void)\\b'
   'name': 'storage.type'
 },
 
@@ -29,4 +29,23 @@
 {
   'match': '\\b(false|nullptr|true)\\b'
   'name': 'constant.language'
+},
+
+# language variables
+{
+  'match': '\\bthis\\b'
+  'name': 'variable.language'
+},
+
+# block comment
+{
+  'begin': '/\\*'
+  'end': '\\*/'
+  'name': 'comment.block'
+},
+
+# line comment
+{
+  'match': '//.*$'
+  'name': 'comment.line'
 }]
