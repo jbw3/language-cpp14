@@ -13,6 +13,12 @@
   'name': 'keyword.control'
 },
 
+# preprocessor keywords
+{
+  'match': '#\\s*(define|elif|else|endif|error|if|ifdef|ifndef|include|line|pragma|warning)\\b'
+  'name': 'keyword.control'
+},
+
 # storage types
 {
   'match': '\\b(auto|bool|char|class|double|enum|float|int|long|short|signed|struct|template|typedef|typename|unsigned|void)\\b'
@@ -48,4 +54,10 @@
 {
   'match': '//.*$'
   'name': 'comment.line'
+},
+
+# numeric literals
+{
+  'match': '\\b((\\d*\\.\\d+|\\d+\\.)[fFlL]?|(([1-9]\\d*|0[0-7]*|0[xX][\\da-fA-F]+)([lL][uU]?|[lL]{2}[uU]?|[uU][lL]{0,2})?))\\b'
+  'name': 'constant.numeric'
 }]
