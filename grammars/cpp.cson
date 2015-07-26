@@ -98,6 +98,10 @@
 
 {
   'include': '#string'
+},
+
+{
+  'include': '#function'
 }]
 
 'repository':
@@ -157,3 +161,9 @@
       'match': '\\\\[abnrtvx\'"\\\\]'
       'name':  'constant.character.escape'
     }]
+
+  # function
+  'function':
+    # TODO: add restrictions between angle brackets
+    'match': '\\b[_a-zA-Z]\\w*(?=\\s*(<.*>\\s*)?\\()'
+    'name': 'entity.name.function'
