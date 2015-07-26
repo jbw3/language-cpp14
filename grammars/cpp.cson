@@ -106,11 +106,21 @@
     'match': '[@\\\\](author|authors|brief|class|details|file|note|param|ref|return|returns|struct|todo|tparam)\\b'
     'name':  'comment.block.documentation'
 
-  # TODO: /// should be doxygen
   # line comment
   'line-comment':
-    'match': '//.*$'
+    'begin': '(?=//)'
+    'end': '\\n'
     'name': 'comment.line.double-slash'
+    # doxygen
+    'patterns': [{
+      # start with "///" or "//!" but not "////"
+      'begin': '(?<!/)(?=//(/[^/]|!))'
+      'end': '(?=\\n)'
+      'name': 'meta.documentation'
+      'patterns': [{
+          'include': '#doxygen-keywords'
+      }]
+    }]
 
   # block comment
   'block-comment':
