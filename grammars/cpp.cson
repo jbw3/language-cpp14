@@ -75,10 +75,8 @@
   'include': '#support-types'
 },
 
-# language variables
 {
-  'match': '\\bthis\\b'
-  'name': 'variable.language'
+  'include': '#language-variables'
 },
 
 {
@@ -182,6 +180,11 @@
     'match': '\\b(int8_t|int16_t|int32_t|int64_t|int_fast8_t|int_fast16_t|int_fast32_t|int_fast64_t|int_least8_t|int_least16_t|int_least32_t|int_least64_t|intmax_t|intptr_t|size_t|uint|uint8_t|uint16_t|uint32_t|uint64_t|uint_fast8_t|uint_fast16_t|uint_fast32_t|uint_fast64_t|uint_least8_t|uint_least16_t|uint_least32_t|uint_least64_t|uintmax_t|uintptr_t)\\b'
     'name': 'support.type'
 
+  # language variables
+  'language-variables':
+    'match': '\\bthis\\b'
+    'name': 'variable.language'
+
   # numeric literals
   'numeric-literals':
     'match': '\\b((\\d*\\.\\d+|\\d+\\.)[fFlL]?|(([1-9]\\d*|0[0-7]*|0[xX][\\da-fA-F]+)([lL][uU]?|[lL]{2}[uU]?|[uU][lL]{0,2})?))\\b'
@@ -243,6 +246,20 @@
       'include': '#support-types'
     },
     {
-      # needed for "= 0" for pure virtual functions
+      'include': '#language-constants'
+    },
+    {
+      'include': '#language-variables'
+    },
+    {
       'include': '#numeric-literals'
+    },
+    {
+      'include': '#string'
+    },
+    {
+      'include': '#char-literals'
+    },
+    {
+      'include': '#function'
     }]
