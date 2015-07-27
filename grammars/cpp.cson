@@ -32,7 +32,7 @@
   },
 
   {
-    'match': '#\\s*(define|elif|else|endif|error|if|ifdef|ifndef|include|line|pragma|warning)\\b'
+    'match': '#\\s*(define|elif|else|endif|error|if|ifdef|ifndef|include|line|pragma|undef|warning)\\b'
     'name': 'keyword.control'
   },
 
