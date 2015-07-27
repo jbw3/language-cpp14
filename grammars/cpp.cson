@@ -101,6 +101,10 @@
 },
 
 {
+  'include': '#char-literals'
+},
+
+{
   'include': '#function'
 }]
 
@@ -152,14 +156,27 @@
     'match': '\\b(false|nullptr|true)\\b'
     'name': 'constant.language'
 
+  # escape chars
+  'escape-chars':
+    'match': '\\\\[abnrtvx\'"\\\\]'
+    'name':  'constant.character.escape'
+
   # string
   'string':
     'begin': '"'
     'end': '"|\\n'
     'name': 'string.quoted.double'
     'patterns': [{
-      'match': '\\\\[abnrtvx\'"\\\\]'
-      'name':  'constant.character.escape'
+      'include': '#escape-chars'
+    }]
+
+  # char literals
+  'char-literals':
+    'begin': '\''
+    'end': '\'|\\n'
+    'name': 'string.quoted.double'
+    'patterns': [{
+      'include': '#escape-chars'
     }]
 
   # function
