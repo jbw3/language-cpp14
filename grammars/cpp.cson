@@ -9,12 +9,7 @@
 
 # control keywords
 'patterns': [{
-  'match': '\\b(break|case|catch|const_cast|continue|default|delete|do|dynamic_cast|else|explicit|friend|for|goto|if|inline|namespace|new|operator|private|protected|public|reinterpret_cast|return|sizeof|static_cast|switch|try|typedef|using|virtual|while)\\b'
-  'name': 'keyword.control'
-},
-
 # preprocessor
-{
   'begin': '(?=#)'
   'end': '\\n'
   'name': 'meta.preprocessor'
@@ -56,22 +51,24 @@
   }]
 },
 
-# storage types
 {
-  'match': '\\b(auto|bool|char|class|double|enum|float|int|long|short|signed|struct|template|typename|union|unsigned|void)\\b'
-  'name': 'storage.type'
+  'include': '#control-keywords'
 },
 
-# support types
 {
-  'match': '\\b(int8_t|int16_t|int32_t|int64_t|int_fast8_t|int_fast16_t|int_fast32_t|int_fast64_t|int_least8_t|int_least16_t|int_least32_t|int_least64_t|intmax_t|intptr_t|size_t|uint|uint8_t|uint16_t|uint32_t|uint64_t|uint_fast8_t|uint_fast16_t|uint_fast32_t|uint_fast64_t|uint_least8_t|uint_least16_t|uint_least32_t|uint_least64_t|uintmax_t|uintptr_t)\\b'
-  'name': 'support.type'
+  'include': '#deprecated-keywords'
 },
 
-# storage modifiers
 {
-  'match': '\\b(const|register|static|volatile)\\b'
-  'name': 'storage.modifier'
+  'include': '#storage-types'
+},
+
+{
+  'include': '#storage-modifiers'
+},
+
+{
+  'include': '#support-types'
 },
 
 # language variables
@@ -146,6 +143,31 @@
       }]
     }]
 
+  # control keywords
+  'control-keywords':
+    'match': '\\b(alignas|alignof|and|and_eq|asm|bitand|bitor|break|case|catch|compl|constexpr|const_cast|continue|default|delete|do|dynamic_cast|else|explicit|export|extern|for|friend|goto|if|inline|namespace|new|noexcept|not|not_eq|operator|or|or_eq|private|protected|public|reinterpret_cast|return|sizeof|static_assert|static_cast|switch|throw|try|typedef|typeid|using|virtual|while|xor|xor_eq)\\b'
+    'name': 'keyword.control'
+
+  # deprecated keywords
+  'deprecated-keywords':
+    'match': '\\bregister\\b'
+    'name': 'invalid.deprecated'
+
+  # storage types
+  'storage-types':
+    'match': '\\b(auto|bool|char|char16_t|char32_t|class|decltype|double|enum|float|int|long|short|signed|struct|template|thread_local|typename|union|unsigned|void|wchar_t)\\b'
+    'name': 'storage.type'
+
+  # storage modifiers
+  'storage-modifiers':
+    'match': '\\b(const|mutable|static|volatile)\\b'
+    'name': 'storage.modifier'
+
+  # support types
+  'support-types':
+    'match': '\\b(int8_t|int16_t|int32_t|int64_t|int_fast8_t|int_fast16_t|int_fast32_t|int_fast64_t|int_least8_t|int_least16_t|int_least32_t|int_least64_t|intmax_t|intptr_t|size_t|uint|uint8_t|uint16_t|uint32_t|uint64_t|uint_fast8_t|uint_fast16_t|uint_fast32_t|uint_fast64_t|uint_least8_t|uint_least16_t|uint_least32_t|uint_least64_t|uintmax_t|uintptr_t)\\b'
+    'name': 'support.type'
+
   # numeric literals
   'numeric-literals':
     'match': '\\b((\\d*\\.\\d+|\\d+\\.)[fFlL]?|(([1-9]\\d*|0[0-7]*|0[xX][\\da-fA-F]+)([lL][uU]?|[lL]{2}[uU]?|[uU][lL]{0,2})?))\\b'
@@ -174,7 +196,7 @@
   'char-literals':
     'begin': '\''
     'end': '\'|\\n'
-    'name': 'string.quoted.double'
+    'name': 'string.quoted.single'
     'patterns': [{
       'include': '#escape-chars'
     }]
