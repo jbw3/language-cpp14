@@ -1,18 +1,13 @@
 {
-  "name": "cpp-extensions",
-  "main": "./lib/atom-cpp-extensions",
+  "name": "language-cpp14",
   "version": "0.0.0",
   "description": "Syntax highlighting for C++14 including new keywords, raw strings, digit separators, and binary literals",
   "keywords": [
   ],
-  "activationCommands": {
-    "atom-workspace": "atom-cpp-extensions:toggle"
-  },
-  "repository": "https://github.com/atom/atom-cpp-extensions",
+  "repository": "https://github.com/jbw3/language-cpp14",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
