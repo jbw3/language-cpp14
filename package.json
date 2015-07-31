@@ -2,7 +2,7 @@
   "name": "cpp-extensions",
   "main": "./lib/atom-cpp-extensions",
   "version": "0.0.0",
-  "description": "A short description of your package",
+  "description": "Syntax highlighting for C++14 including new keywords, raw strings, digit separators, and binary literals",
   "keywords": [
   ],
   "activationCommands": {
