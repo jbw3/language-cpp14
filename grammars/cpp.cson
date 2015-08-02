@@ -160,7 +160,7 @@
   # control keywords
   # TODO: C++17: add concept and requires
   'control-keywords':
-    'match': '\\b(?:alignas|alignof|asm|break|case|catch|constexpr|continue|default|delete|do|else|explicit|export|extern|for|friend|goto|if|inline|namespace|new|noexcept|operator|private|protected|public|return|sizeof|static_assert|switch|throw|try|typedef|using|virtual|while)\\b'
+    'match': '\\b(?:alignas|alignof|asm|break|case|catch|continue|default|delete|do|else|explicit|export|extern|for|friend|goto|if|inline|namespace|new|noexcept|operator|private|protected|public|return|sizeof|static_assert|switch|throw|try|typedef|using|virtual|while)\\b'
     'name': 'keyword.control'
 
   # operator keywords
@@ -185,18 +185,18 @@
 
   # storage types
   'storage-types':
-    'match': '\\b(?:auto|bool|char|char16_t|char32_t|class|decltype|double|enum|float|int|long|short|signed|struct|template|thread_local|typename|union|unsigned|void|wchar_t)\\b'
-    'name': 'storage.type'
+    'match': '\\b(?:auto|bool|char|char16_t|char32_t|class|decltype|double|enum|float|int|long|short|signed|struct|template|union|unsigned|void|wchar_t)\\b'
+    'name': 'storage.type.cpp'
 
   # language constants
   'language-constants':
     'match': '\\b(?:false|nullptr|true)\\b'
-    'name': 'constant.language'
+    'name': 'constant.language.cpp'
 
   # storage modifiers
   'storage-modifiers':
-    'match': '\\b(?:const|mutable|static|volatile)\\b'
-    'name': 'storage.modifier'
+    'match': '\\b(?:const|constexpr|mutable|static|thread_local|typename|volatile)\\b'
+    'name': 'storage.modifier.cpp'
 
   # support types
   'support-types':
@@ -243,6 +243,7 @@
     }]
 
   # function
+  # TODO: match across newlines
   'function':
     'match': '(?:[_a-zA-Z]\\w*(?:\\s*<.*>\\s*)?::)*(?:[_a-zA-Z]\\w*(?:\\s*<.*>\\s*)?)\\s*\\('
     'name': 'meta.function.cpp'
