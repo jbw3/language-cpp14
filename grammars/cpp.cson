@@ -221,8 +221,14 @@
   # string
   'string':
     'begin': '(?:L|u8|u|U)?"'
+    'beginCaptures':
+      '0':
+        'name':'punctuation.definition.string.begin.cpp'
     'end': '"'
-    'name': 'string.quoted.double'
+    'endCaptures':
+      '0':
+        'name':'punctuation.definition.string.end.cpp'
+    'name': 'string.quoted.double.cpp'
     'patterns': [{
       'include': '#escape-chars'
     }]
@@ -230,14 +236,26 @@
   # raw string
   'raw-string':
     'begin': '(?:L|u8|u|U)?R"([^\\(\\)\\\\ ]{0,16})\\('
+    'beginCaptures':
+      '0':
+        'name':'punctuation.definition.string.begin.cpp'
     'end': '\\)\\1"'
-    'name': 'string.quoted.double'
+    'endCaptures':
+      '0':
+        'name':'punctuation.definition.string.end.cpp'
+    'name': 'string.quoted.double.cpp'
 
   # char literals
   'char-literals':
     'begin': '(?:L|u|U)?\'' # TODO: C++17: add u8
+    'beginCaptures':
+      '0':
+        'name':'punctuation.definition.string.begin.cpp'
     'end': '\''
-    'name': 'string.quoted.single'
+    'endCaptures':
+      '0':
+        'name':'punctuation.definition.string.end.cpp'
+    'name': 'string.quoted.single.cpp'
     'patterns': [{
       'include': '#escape-chars'
     }]
