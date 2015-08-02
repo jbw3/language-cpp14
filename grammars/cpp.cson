@@ -117,6 +117,9 @@
 
 {
   'include': '#function'
+},
+{
+  'include': '#class'
 }]
 
 'repository':
@@ -184,8 +187,9 @@
     'name': 'invalid.deprecated'
 
   # storage types
+  # NOTE: class, struct, and union are highlighted in '#class'
   'storage-types':
-    'match': '\\b(?:auto|bool|char|char16_t|char32_t|class|decltype|double|enum|float|int|long|short|signed|struct|template|thread_local|typename|union|unsigned|void|wchar_t)\\b'
+    'match': '\\b(?:auto|bool|char|char16_t|char32_t|decltype|double|enum|float|int|long|short|signed|template|thread_local|typename|unsigned|void|wchar_t)\\b'
     'name': 'storage.type'
 
   # language constants
@@ -301,3 +305,71 @@
     {
       'include': '#function'
     }]
+
+  # class, struct, union
+  # TODO: create 'meta.block'
+  'class':
+    'begin': '\\b(class|struct|union)\\s+([_a-zA-Z]\\w*)\\b'
+    'beginCaptures':
+      '1':
+        'name': 'storage.type'
+      '2':
+        'name': 'entity.name.type'
+    'end': ';'
+    # 'name': 'meta.class-struct-block.cpp'
+    'patterns': [{
+      'begin': '{'
+      'end': '}'
+      'name': 'meta.class-struct-block.cpp'
+      'patterns': [{
+        'include': '#block-comment'
+      },
+      {
+        'include': '#line-comment'
+      },
+      {
+        'include': '#control-keywords'
+      },
+      {
+        'include': '#operator-keywords'
+      },
+      {
+        'include': '#cast-operator-keywords'
+      },
+      {
+        'include': '#special-identifiers'
+      },
+      {
+        'include': '#storage-types'
+      },
+      {
+        'include': '#storage-modifiers'
+      },
+      {
+        'include': '#support-types'
+      },
+      {
+        'include': '#language-constants'
+      },
+      {
+        'include': '#language-variables'
+      },
+      {
+        'include': '#numeric-literals'
+      },
+      {
+        'include': '#string'
+      },
+      {
+        'include': '#raw-string'
+      },
+      {
+        'include': '#char-literals'
+      },
+      {
+        'include': '#function'
+      },
+      {
+        'include': '#class'
+      }]
+  }]
