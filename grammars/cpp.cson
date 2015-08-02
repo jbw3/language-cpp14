@@ -244,9 +244,21 @@
 
   # function
   'function':
-    # TODO: add restrictions between angle brackets
-    'match': '\\b[_a-zA-Z]\\w*(?=\\s*(<.*>\\s*)?\\()'
-    'name': 'entity.name.function'
+    'match': '(?:[_a-zA-Z]\\w*(?:\\s*<.*>\\s*)?::)*(?:[_a-zA-Z]\\w*(?:\\s*<.*>\\s*)?)\\s*\\('
+    'name': 'meta.function.cpp'
+    'captures':
+      '0':
+        'patterns': [{
+          'begin': '<'
+          'end': '>'
+          'patterns': [{
+            'include': '$base'
+          }]
+        },
+        {
+          'match': '[_a-zA-Z]\\w*'
+          'name': 'entity.name.function'
+        }]
 
   # after function
   'after-function':
