@@ -216,7 +216,12 @@
   # escape chars
   'escape-chars':
     'match': '\\\\(?:[\'"\\?\\\\abfnrtv]|[0-7]{1,3}|x[\\da-fA-F]+|u[\\da-fA-F]{4}|U[\\da-fA-F]{8})'
-    'name':  'constant.character.escape'
+    'name':  'constant.character.escape.cpp'
+
+  # invaild escape chars
+  'invalid-escape-chars':
+    'match': '\\\\(?:[^\'"\\?\\\\abfnrtvxuU0-7]|x[^\\da-fA-F]|u[\\da-fA-F]{0,3}[^\\da-fA-F]|U[\\da-fA-F]{0,7}[^\\da-fA-F])'
+    'name':  'invalid.illegal.unknown-escape.cpp'
 
   # string
   'string':
@@ -231,6 +236,9 @@
     'name': 'string.quoted.double.cpp'
     'patterns': [{
       'include': '#escape-chars'
+    },
+    {
+      'include': '#invalid-escape-chars'
     }]
 
   # raw string
@@ -258,6 +266,9 @@
     'name': 'string.quoted.single.cpp'
     'patterns': [{
       'include': '#escape-chars'
+    },
+    {
+      'include': '#invalid-escape-chars'
     }]
 
   # function
