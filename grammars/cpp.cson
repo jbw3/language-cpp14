@@ -1,3 +1,5 @@
+# TODO: fix after-function conflict with macros
+
 'scopeName': 'source.cpp'
 'name': 'C++14'
 
@@ -210,7 +212,7 @@
 
   # numeric literals
   'numeric-literals':
-    'match': '\\b(?:(?:\\d*\\.\\d+|\\d+\\.)[fFlL]?|(?:(?:[1-9](?:[\\d\']*\\d)?|0(?:[0-7\']*[0-7])?|0[Xx][\\da-fA-F](?:[\\da-fA-F\']*[\\da-fA-F])?|0[Bb][01](?:[01\']*[01])?)(?:[lL][uU]?|[lL]{2}[uU]?|[uU][lL]{0,2})?))\\b'
+    'match': '\\b(?:(?:\\d*\\.\\d+|\\d+\\.)[fFlL]?|(?:(?:[1-9](?:[\\d\']*\\d)?|0(?:[0-7\']*[0-7])?|0[Xx][\\da-fA-F](?:[\\da-fA-F\']*[\\da-fA-F])?|0[Bb][01](?:[01\']*[01])?)(?:(?:l{1,2}|L{1,2})[uU]?|[uU](?:l{0,2}|L{0,2}))?))\\b'
     'name': 'constant.numeric'
 
   # escape chars
@@ -273,6 +275,7 @@
 
   # function
   # TODO: match across newlines
+  # TODO: don't match non-functions in between <>
   'function':
     'match': '(?:[_a-zA-Z]\\w*(?:\\s*<.*>\\s*)?::)*(?:[_a-zA-Z]\\w*(?:\\s*<.*>\\s*)?)\\s*\\('
     'name': 'meta.function.cpp'
