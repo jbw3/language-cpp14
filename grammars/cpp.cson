@@ -54,6 +54,10 @@
 },
 
 {
+  'include': '#block'
+},
+
+{
   'include': '#control-keywords'
 },
 
@@ -160,6 +164,15 @@
       'patterns': [{
           'include': '#doxygen-keywords'
       }]
+    }]
+
+  # block
+  'block':
+    'begin': '{'
+    'end': '}'
+    'name': 'meta.block.cpp'
+    'patterns': [{
+      'include': '$base'
     }]
 
   # control keywords
@@ -300,7 +313,7 @@
   # after function
   'after-function':
     'begin': '\\)'
-    'end': ';|{'
+    'end': '(?=;|{)'
     'name': 'meta.after-function'
     'patterns': [{
       'include': '#block-comment'
@@ -352,7 +365,6 @@
     }]
 
   # class, struct, union
-  # TODO: create 'meta.block'
   'class':
     'begin': '\\b(class|struct|union)\\s+([_a-zA-Z]\\w*)\\b'
     'beginCaptures':
@@ -367,54 +379,6 @@
       'end': '}'
       'name': 'meta.class-struct-block.cpp'
       'patterns': [{
-        'include': '#block-comment'
-      },
-      {
-        'include': '#line-comment'
-      },
-      {
-        'include': '#control-keywords'
-      },
-      {
-        'include': '#operator-keywords'
-      },
-      {
-        'include': '#cast-operator-keywords'
-      },
-      {
-        'include': '#special-identifiers'
-      },
-      {
-        'include': '#storage-types'
-      },
-      {
-        'include': '#storage-modifiers'
-      },
-      {
-        'include': '#support-types'
-      },
-      {
-        'include': '#language-constants'
-      },
-      {
-        'include': '#language-variables'
-      },
-      {
-        'include': '#numeric-literals'
-      },
-      {
-        'include': '#string'
-      },
-      {
-        'include': '#raw-string'
-      },
-      {
-        'include': '#char-literals'
-      },
-      {
-        'include': '#function'
-      },
-      {
-        'include': '#class'
+        'include': '$base'
       }]
   }]
