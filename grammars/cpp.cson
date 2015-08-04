@@ -204,7 +204,7 @@
   # storage types
   # NOTE: class, struct, and union are highlighted in '#class'
   'storage-types':
-    'match': '\\b(?:auto|bool|char|char16_t|char32_t|decltype|double|enum|float|int|long|short|signed|template|thread_local|typename|unsigned|void|wchar_t)\\b'
+    'match': '\\b(?:auto|bool|char|char16_t|char32_t|decltype|double|enum|float|int|long|short|signed|template|thread_local|unsigned|void|wchar_t)\\b'
     'name': 'storage.type.cpp'
 
   # language constants
