@@ -1,3 +1,5 @@
+# TODO: fix after-function conflict with macros
+
 'scopeName': 'source.cpp'
 'name': 'C++14'
 
@@ -163,7 +165,7 @@
   # control keywords
   # TODO: C++17: add concept and requires
   'control-keywords':
-    'match': '\\b(?:alignas|alignof|asm|break|case|catch|constexpr|continue|default|delete|do|else|explicit|export|extern|for|friend|goto|if|inline|namespace|new|noexcept|operator|private|protected|public|return|sizeof|static_assert|switch|throw|try|typedef|using|virtual|while)\\b'
+    'match': '\\b(?:alignas|alignof|asm|break|case|catch|continue|default|delete|do|else|explicit|export|extern|for|friend|goto|if|inline|namespace|new|noexcept|operator|private|protected|public|return|sizeof|static_assert|switch|throw|try|typedef|using|virtual|while)\\b'
     'name': 'keyword.control'
 
   # operator keywords
@@ -195,12 +197,12 @@
   # language constants
   'language-constants':
     'match': '\\b(?:false|nullptr|true)\\b'
-    'name': 'constant.language'
+    'name': 'constant.language.cpp'
 
   # storage modifiers
   'storage-modifiers':
-    'match': '\\b(?:const|mutable|static|volatile)\\b'
-    'name': 'storage.modifier'
+    'match': '\\b(?:const|constexpr|mutable|static|thread_local|typename|volatile)\\b'
+    'name': 'storage.modifier.cpp'
 
   # support types
   'support-types':
@@ -214,43 +216,86 @@
 
   # numeric literals
   'numeric-literals':
-    'match': '\\b(?:(?:\\d*\\.\\d+|\\d+\\.)[fFlL]?|(?:(?:[1-9](?:[\\d\']*\\d)?|0(?:[0-7\']*[0-7])?|0[Xx][\\da-fA-F](?:[\\da-fA-F\']*[\\da-fA-F])?|0[Bb][01](?:[01\']*[01])?)(?:[lL][uU]?|[lL]{2}[uU]?|[uU][lL]{0,2})?))\\b'
+    'match': '(?<![\'\\.])(?:(?:(?:\\b\\d(?:[\\d\']*\\d)?\\.\\d(?:[\\d\']*\\d)?|\\B\\.\\d(?:[\\d\']*\\d)?)(?:[Ee][+-]?\\d(?:[\\d\']*\\d)?)?(?:[fFlL]|(?:i[fl]?|h|min|[mun]?s|_\\w*))?\\b|(?:\\b\\d(?:[\\d\']*\\d)?\\.)(?:\\B|(?:[fFlL]|(?:i[fl]?|h|min|[mun]?s|_\\w*))\\b|(?:[Ee][+-]?\\d(?:[\\d\']*\\d)?)(?:[fFlL]|(?:i[fl]?|h|min|[mun]?s|_\\w*))?\\b)|\\b\\d(?:[\\d\']*\\d)?(?:[Ee][+-]?\\d(?:[\\d\']*\\d)?)(?:[fFlL]|(?:i[fl]?|h|min|[mun]?s|_\\w*))?\\b)|\\b(?:(?:[1-9](?:[\\d\']*\\d)?|0(?:[0-7\']*[0-7])?|0[Xx][\\da-fA-F](?:[\\da-fA-F\']*[\\da-fA-F])?|0[Bb][01](?:[01\']*[01])?)(?:(?:l{1,2}|L{1,2})[uU]?|[uU](?:l{0,2}|L{0,2})|(?:i[fl]?|h|min|[mun]?s|_\\w*))?)\\b)(?!\\.)'
     'name': 'constant.numeric'
 
   # escape chars
   'escape-chars':
     'match': '\\\\(?:[\'"\\?\\\\abfnrtv]|[0-7]{1,3}|x[\\da-fA-F]+|u[\\da-fA-F]{4}|U[\\da-fA-F]{8})'
-    'name':  'constant.character.escape'
+    'name':  'constant.character.escape.cpp'
+
+  # invaild escape chars
+  'invalid-escape-chars':
+    'match': '\\\\(?:[^\'"\\?\\\\abfnrtvxuU0-7]|x[^\\da-fA-F]|u[\\da-fA-F]{0,3}[^\\da-fA-F]|U[\\da-fA-F]{0,7}[^\\da-fA-F])'
+    'name':  'invalid.illegal.unknown-escape.cpp'
 
   # string
   'string':
     'begin': '(?:L|u8|u|U)?"'
+    'beginCaptures':
+      '0':
+        'name':'punctuation.definition.string.begin.cpp'
     'end': '"'
-    'name': 'string.quoted.double'
+    'endCaptures':
+      '0':
+        'name':'punctuation.definition.string.end.cpp'
+    'name': 'string.quoted.double.cpp'
     'patterns': [{
       'include': '#escape-chars'
+    },
+    {
+      'include': '#invalid-escape-chars'
     }]
 
   # raw string
   'raw-string':
     'begin': '(?:L|u8|u|U)?R"([^\\(\\)\\\\ ]{0,16})\\('
+    'beginCaptures':
+      '0':
+        'name':'punctuation.definition.string.begin.cpp'
     'end': '\\)\\1"'
-    'name': 'string.quoted.double'
+    'endCaptures':
+      '0':
+        'name':'punctuation.definition.string.end.cpp'
+    'name': 'string.quoted.double.cpp'
 
   # char literals
   'char-literals':
     'begin': '(?:L|u|U)?\'' # TODO: C++17: add u8
+    'beginCaptures':
+      '0':
+        'name':'punctuation.definition.string.begin.cpp'
     'end': '\''
-    'name': 'string.quoted.single'
+    'endCaptures':
+      '0':
+        'name':'punctuation.definition.string.end.cpp'
+    'name': 'string.quoted.single.cpp'
     'patterns': [{
       'include': '#escape-chars'
+    },
+    {
+      'include': '#invalid-escape-chars'
     }]
 
   # function
+  # TODO: match across newlines
+  # TODO: don't match non-functions in between <>
   'function':
-    # TODO: add restrictions between angle brackets
-    'match': '\\b[_a-zA-Z]\\w*(?=\\s*(<.*>\\s*)?\\()'
-    'name': 'entity.name.function'
+    'match': '(?:[_a-zA-Z]\\w*(?:\\s*<.*>\\s*)?::)*(?:[_a-zA-Z]\\w*(?:\\s*<.*>\\s*)?)\\s*\\('
+    'name': 'meta.function.cpp'
+    'captures':
+      '0':
+        'patterns': [{
+          'begin': '<'
+          'end': '>'
+          'patterns': [{
+            'include': '$base'
+          }]
+        },
+        {
+          'match': '[_a-zA-Z]\\w*'
+          'name': 'entity.name.function'
+        }]
 
   # after function
   'after-function':
