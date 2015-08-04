@@ -365,6 +365,7 @@
     }]
 
   # class, struct, union
+  # TODO: highlight base classes
   'class':
     'begin': '\\b(class|struct|union)\\s+([_a-zA-Z]\\w*)\\b'
     'beginCaptures':
@@ -373,12 +374,14 @@
       '2':
         'name': 'entity.name.type'
     'end': ';'
-    # 'name': 'meta.class-struct-block.cpp'
+    'name': 'meta.class-struct-block.cpp'
     'patterns': [{
       'begin': '{'
       'end': '}'
-      'name': 'meta.class-struct-block.cpp'
       'patterns': [{
         'include': '$base'
       }]
-  }]
+    },
+    {
+      'include': '$base'
+    }]
