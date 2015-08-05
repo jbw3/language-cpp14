@@ -52,10 +52,10 @@
         }]
     },
     {
-      'include': '#line-comment'
+      'include': '#block-comment'
     },
     {
-      'include': '#block-comment'
+      'include': '#line-comment'
     },
     {
       'include': '#numeric-literals'
@@ -89,77 +89,77 @@
     },
     {
       'include': '#support-types'
+    },
+    {
+      'include': '#language-variables'
+    },
+    {
+      'include': '#string'
+    },
+    {
+      'include': '#raw-string'
+    },
+    {
+      'include': '#char-literals'
+    },
+    {
+      'include': '#function'
+    },
+    {
+      'include': '#class'
     }]
 },
-
-{
-  'include': '#block'
-},
-
-{
-  'include': '#control-keywords'
-},
-
-{
-  'include': '#operator-keywords'
-},
-
-{
-  'include': '#cast-operator-keywords'
-},
-
-{
-  'include': '#after-function'
-},
-
-{
-  'include': '#deprecated-keywords'
-},
-
-{
-  'include': '#storage-types'
-},
-
-{
-  'include': '#storage-modifiers'
-},
-
-{
-  'include': '#support-types'
-},
-
-{
-  'include': '#language-variables'
-},
-
-{
-  'include': '#language-constants'
-},
-
 {
   'include': '#block-comment'
 },
-
 {
   'include': '#line-comment'
 },
-
 {
   'include': '#numeric-literals'
 },
-
+{
+  'include': '#language-constants'
+},
+{
+  'include': '#block'
+},
+{
+  'include': '#control-keywords'
+},
+{
+  'include': '#operator-keywords'
+},
+{
+  'include': '#cast-operator-keywords'
+},
+{
+  'include': '#after-function'
+},
+{
+  'include': '#deprecated-keywords'
+},
+{
+  'include': '#storage-types'
+},
+{
+  'include': '#storage-modifiers'
+},
+{
+  'include': '#support-types'
+},
+{
+  'include': '#language-variables'
+},
 {
   'include': '#string'
 },
-
 {
   'include': '#raw-string'
 },
-
 {
   'include': '#char-literals'
 },
-
 {
   'include': '#function'
 },
