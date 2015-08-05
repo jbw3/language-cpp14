@@ -20,27 +20,35 @@
   'patterns': [{
     # keywords
     # NOTE: include is defined below
-      'match': '#\\s*(?:define|elif|else|endif|error|if|ifdef|ifndef|line|pragma|undef|warning)\\b'
-      'name': 'keyword.control.cpp'
+      'match': '#\\s*(define|elif|else|endif|error|if|ifdef|ifndef|line|pragma|undef|warning)\\b'
+      'captures':
+        '1':
+          'name': 'keyword.control.cpp'
     },
     # include
     {
-      'begin': '#\\s*include\\b'
+      'begin': '#\\s*(include)\\b'
       'beginCaptures':
-        '0':
+        '1':
           'name': 'keyword.control.import.include.cpp'
-      'end': '(?<!\\\\)\\n'
+      'end': '(?<!\\\\)(?=\\n)'
       'patterns': [{
         # quotes highlight (e.g. #include "math.h")
           'begin': '"'
-          'end': '"|\\n'
+          'end': '"'
           'name': 'string.quoted.double.include.cpp'
         },
         # angle brackets highlight (e.g. #include <cmath>)
         {
           'begin': '<'
-          'end': '>|\\n'
+          'end': '>'
           'name': 'string.quoted.other.lt-gt.include.cpp'
+        },
+        {
+          'include': '#line-comment'
+        },
+        {
+          'include': '#block-comment'
         }]
     },
     {
