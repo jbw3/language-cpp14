@@ -14,7 +14,7 @@
 # preprocessor
   'begin': '(?=#)'
   'end': '\\n'
-  'name': 'meta.preprocessor'
+  'name': 'meta.preprocessor.cpp'
 
   # keywords
   'patterns': [{
@@ -35,21 +35,21 @@
 
   {
     'match': '#\\s*(define|elif|else|endif|error|if|ifdef|ifndef|include|line|pragma|undef|warning)\\b'
-    'name': 'keyword.control'
+    'name': 'keyword.control.cpp'
   },
 
   # quotes highlight (e.g. #include "math.h")
   {
     'begin': '"'
     'end': '"|\\n'
-    'name': 'string.quoted.other'
+    'name': 'string.quoted.other.cpp'
   },
 
   # angle brackets highlight (e.g. #include <cmath>)
   {
     'begin': '<'
     'end': '>|\\n'
-    'name': 'string.quoted.other'
+    'name': 'string.quoted.other.cpp'
   }]
 },
 
@@ -132,19 +132,19 @@
   # doxygen keywords
   'doxygen-keywords':
     'match': '[@\\\\](author|authors|brief|class|details|file|note|param|ref|return|returns|struct|todo|tparam)\\b'
-    'name':  'comment.block.documentation'
+    'name':  'comment.block.documentation.cpp'
 
   # line comment
   'line-comment':
     'begin': '(?=//)'
     'end': '\\n'
-    'name': 'comment.line.double-slash'
+    'name': 'comment.line.double-slash.cpp'
     # doxygen
     'patterns': [{
       # start with "///" or "//!" but not "////"
       'begin': '(?<!/)(?=//(/[^/]|!))'
       'end': '(?=\\n)'
-      'name': 'meta.documentation'
+      'name': 'meta.documentation.cpp'
       'patterns': [{
           'include': '#doxygen-keywords'
       }]
@@ -154,13 +154,13 @@
   'block-comment':
     'begin': '(?=/\\*)'
     'end': '(?<!/)\\*/'
-    'name': 'comment.block'
+    'name': 'comment.block.cpp'
     # doxygen
     'patterns': [{
       # start with "/**" or "/*!" but not "/***"
       'begin': '(?=/\\*(\\*[^\\*]|!))'
       'end': '(?=\\*/)'
-      'name': 'meta.documentation'
+      'name': 'meta.documentation.cpp'
       'patterns': [{
           'include': '#doxygen-keywords'
       }]
@@ -179,27 +179,28 @@
   # TODO: C++17: add concept and requires
   'control-keywords':
     'match': '\\b(?:alignas|alignof|asm|break|case|catch|continue|default|delete|do|else|explicit|export|extern|for|friend|goto|if|inline|namespace|new|noexcept|operator|private|protected|public|return|sizeof|static_assert|switch|throw|try|typedef|using|virtual|while)\\b'
-    'name': 'keyword.control'
+    'name': 'keyword.control.cpp'
 
   # operator keywords
   'operator-keywords':
     'match': '\\b(?:and|and_eq|bitand|bitor|compl|not|not_eq|or|or_eq|typeid|xor|xor_eq)\\b'
-    'name': 'keyword.operator'
+    'name': 'keyword.operator.cpp'
 
   # cast keywords
   'cast-operator-keywords':
     'match': '\\b(?:const_cast|dynamic_cast|reinterpret_cast|static_cast)\\b'
-    'name': 'keyword.operator.cast'
+    'name': 'keyword.operator.cast.cpp'
 
   # special identifiers
+  # TODO: final can apply to a class as well
   'special-identifiers':
     'match': '\\b(?:final|override)\\b'
-    'name': 'keyword.control'
+    'name': 'keyword.control.cpp'
 
   # deprecated keywords
   'deprecated-keywords':
     'match': '\\bregister\\b'
-    'name': 'invalid.deprecated'
+    'name': 'invalid.deprecated.cpp'
 
   # storage types
   # NOTE: class, struct, and union are highlighted in '#class'
@@ -207,30 +208,30 @@
     'match': '\\b(?:auto|bool|char|char16_t|char32_t|decltype|double|enum|float|int|long|short|signed|template|unsigned|void|wchar_t)\\b'
     'name': 'storage.type.cpp'
 
-  # language constants
-  'language-constants':
-    'match': '\\b(?:false|nullptr|true)\\b'
-    'name': 'constant.language.cpp'
-
   # storage modifiers
   'storage-modifiers':
     'match': '\\b(?:const|constexpr|mutable|static|thread_local|typename|volatile)\\b'
     'name': 'storage.modifier.cpp'
 
+  # language constants
+  'language-constants':
+    'match': '\\b(?:false|nullptr|true)\\b'
+    'name': 'constant.language.cpp'
+
   # support types
   'support-types':
     'match': '\\b(?:int8_t|int16_t|int32_t|int64_t|int_fast8_t|int_fast16_t|int_fast32_t|int_fast64_t|int_least8_t|int_least16_t|int_least32_t|int_least64_t|intmax_t|intptr_t|size_t|uint|uint8_t|uint16_t|uint32_t|uint64_t|uint_fast8_t|uint_fast16_t|uint_fast32_t|uint_fast64_t|uint_least8_t|uint_least16_t|uint_least32_t|uint_least64_t|uintmax_t|uintptr_t)\\b'
-    'name': 'support.type'
+    'name': 'support.type.cpp'
 
   # language variables
   'language-variables':
     'match': '\\bthis\\b'
-    'name': 'variable.language'
+    'name': 'variable.language.cpp'
 
   # numeric literals
   'numeric-literals':
     'match': '(?<![\'\\.])(?:(?:(?:\\b\\d(?:[\\d\']*\\d)?\\.\\d(?:[\\d\']*\\d)?|\\B\\.\\d(?:[\\d\']*\\d)?)(?:[Ee][+-]?\\d(?:[\\d\']*\\d)?)?(?:[fFlL]|(?:i[fl]?|h|min|[mun]?s|_\\w*))?\\b|(?:\\b\\d(?:[\\d\']*\\d)?\\.)(?:\\B|(?:[fFlL]|(?:i[fl]?|h|min|[mun]?s|_\\w*))\\b|(?:[Ee][+-]?\\d(?:[\\d\']*\\d)?)(?:[fFlL]|(?:i[fl]?|h|min|[mun]?s|_\\w*))?\\b)|\\b\\d(?:[\\d\']*\\d)?(?:[Ee][+-]?\\d(?:[\\d\']*\\d)?)(?:[fFlL]|(?:i[fl]?|h|min|[mun]?s|_\\w*))?\\b)|\\b(?:(?:[1-9](?:[\\d\']*\\d)?|0(?:[0-7\']*[0-7])?|0[Xx][\\da-fA-F](?:[\\da-fA-F\']*[\\da-fA-F])?|0[Bb][01](?:[01\']*[01])?)(?:(?:l{1,2}|L{1,2})[uU]?|[uU](?:l{0,2}|L{0,2})|(?:i[fl]?|h|min|[mun]?s|_\\w*))?)\\b)(?!\\.)'
-    'name': 'constant.numeric'
+    'name': 'constant.numeric.cpp'
 
   # escape chars
   'escape-chars':
@@ -307,7 +308,7 @@
         },
         {
           'match': '[_a-zA-Z]\\w*'
-          'name': 'entity.name.function'
+          'name': 'entity.name.function.cpp'
         }]
 
   # after function
