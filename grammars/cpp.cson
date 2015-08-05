@@ -106,6 +106,9 @@
       'include': '#function'
     },
     {
+      'include': '#namespace'
+    },
+    {
       'include': '#class'
     }]
 },
@@ -164,6 +167,9 @@
   'include': '#function'
 },
 {
+  'include': '#namespace'
+},
+{
   'include': '#class'
 }]
 
@@ -215,9 +221,10 @@
     }]
 
   # control keywords
+  # NOTE: namespace is highlighted in '#namespace'
   # TODO: C++17: add concept and requires
   'control-keywords':
-    'match': '\\b(?:alignas|alignof|asm|break|case|catch|continue|default|delete|do|else|explicit|export|extern|for|friend|goto|if|inline|namespace|new|noexcept|operator|private|protected|public|return|sizeof|static_assert|switch|throw|try|typedef|using|virtual|while)\\b'
+    'match': '\\b(?:alignas|alignof|asm|break|case|catch|continue|default|delete|do|else|explicit|export|extern|for|friend|goto|if|inline|new|noexcept|operator|private|protected|public|return|sizeof|static_assert|switch|throw|try|typedef|using|virtual|while)\\b'
     'name': 'keyword.control.cpp'
 
   # operator keywords
@@ -402,6 +409,18 @@
     },
     {
       'include': '#function'
+    }]
+
+  # namespace
+  'namespace':
+    'begin': '\\b(namespace)\\b'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.cpp'
+    'end': '(?=;|{)'
+    'patterns': [{
+      'match': '\\b([_a-zA-Z]\\w*)\\b'
+      'name': 'entity.name.type.cpp'
     }]
 
   # class, struct, union
