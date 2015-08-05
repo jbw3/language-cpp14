@@ -1,8 +1,13 @@
 {
   "name": "language-cpp14",
   "version": "0.0.0",
-  "description": "Syntax highlighting for C++14 including new keywords, raw strings, digit separators, and binary literals",
+  "description": "C++14 language support including new keywords, raw strings, digit separators, and binary literals",
   "keywords": [
+      "C++",
+      "C++11",
+      "C++14",
+      "language",
+      "syntax"
   ],
   "repository": "https://github.com/jbw3/language-cpp14",
   "license": "MIT",
