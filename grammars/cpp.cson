@@ -425,17 +425,32 @@
     'end': ';'
     'name': 'meta.class-struct-block.cpp'
     'patterns': [{
-      'begin': '\\b([_a-zA-Z]\\w*)\\b'
-      'beginCaptures':
-        '1':
-          'name': 'entity.name.type.cpp'
+      'begin': '(?<=class|struct|union)'
       'end': '(?=;|{)'
       'patterns': [{
+        # base must be included first or keywords will
+        # not be highlighted
         'include': '$base'
       },
       {
+        # class name
+        # TODO: only highlight one
         'match': '\\b([_a-zA-Z]\\w*)\\b'
-        'name': 'entity.name.type.inherited.cpp'
+        'name': 'entity.name.type.cpp'
+      },
+      {
+        # inherited name(s)
+        'begin': ':'
+        'end': '(?=;|{)'
+        'patterns':[{
+          # base must be included first or keywords will
+          # not be highlighted
+          'include': '$base'
+        },
+        {
+          'match': '\\b([_a-zA-Z]\\w*)\\b'
+          'name': 'entity.name.type.inherited.cpp'
+        }]
       }]
     },
     {
