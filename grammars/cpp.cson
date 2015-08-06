@@ -98,6 +98,9 @@
       'include': '#char-literals'
     },
     {
+      'include': '#template'
+    },
+    {
       'include': '#function'
     },
     {
@@ -154,6 +157,9 @@
 },
 {
   'include': '#char-literals'
+},
+{
+  'include': '#template'
 },
 {
   'include': '#function'
@@ -241,9 +247,10 @@
     'name': 'invalid.deprecated.cpp'
 
   # storage types
-  # NOTE: class, struct, and union are highlighted in '#class'
+  # NOTE: class, struct, and union are highlighted in '#class';
+  # template is highlighted in '#template'
   'storage-types':
-    'match': '\\b(?:auto|bool|char|char16_t|char32_t|decltype|double|enum|float|int|long|short|signed|template|unsigned|void|wchar_t)\\b'
+    'match': '\\b(?:auto|bool|char|char16_t|char32_t|decltype|double|enum|float|int|long|short|signed|unsigned|void|wchar_t)\\b'
     'name': 'storage.type.cpp'
 
   # storage modifiers
@@ -462,4 +469,65 @@
       {
         'include': '#after-function'
       }]
+    }]
+
+  # template
+  'template':
+    'begin': '\\btemplate\\b'
+    'beginCaptures':
+      '0':
+        'name': 'storage.type.cpp'
+    'end': '(?=>)'
+    'patterns': [{
+        'begin': '(?=<)'
+        'end': '(?=>)'
+        'patterns': [{
+          'include': '#block-comment'
+        },
+        {
+          'include': '#line-comment'
+        },
+        {
+          'include': '#numeric-literals'
+        },
+        {
+          'include': '#language-constants'
+        },
+        {
+          'include': '#storage-types'
+        },
+        {
+          'match': '\\bclass\\b'
+          'name': 'storage.type.cpp'
+        },
+        {
+          'include': '#control-keywords'
+        },
+        {
+          'include': '#operator-keywords'
+        },
+        {
+          'include': '#cast-operator-keywords'
+        },
+        {
+          'include': '#deprecated-keywords'
+        },
+        {
+          'include': '#storage-modifiers'
+        },
+        {
+          'include': '#support-types'
+        },
+        {
+          'include': '#string'
+        },
+        {
+          'include': '#raw-string'
+        },
+        {
+          'include': '#char-literals'
+        },
+        {
+          'include': '#function'
+        }]
     }]

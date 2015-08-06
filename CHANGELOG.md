@@ -2,9 +2,10 @@
 
 ### Changes
 
-* Namespace highlighting
+* Adding namespace highlighting
 * Fixing several preprocessor directive highlighting bugs
 * Fixing a class/struct highlighting bug
+* Fixing incorrect highlighting when using the class keyword in a template parameter list
 
 ## 0.1.0 - Initial Release
 
