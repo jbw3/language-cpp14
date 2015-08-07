@@ -173,9 +173,19 @@
 
 'repository':
   # doxygen keywords
+  # NOTE: param is defined below
+  # TODO: mark @f{ and @f}
   'doxygen-keywords':
-    'match': '[@\\\\](author|authors|brief|class|details|file|note|param|ref|return|returns|struct|todo|tparam)\\b'
+    'match': '[@\\\\](?:(?:{|}|f\\$|f\\[|f\\]|\\$|@|\\\\|&|~|<|>|#|%|"|\\.|::|\\||-{2,3})|(?:a|addindex|addtogroup|anchor|arg|attention|author|authors|b|brief|bug|c|callergraph|callgraph|category|cite|class|code|cond|copybrief|copydetails|copydoc|copyright|date|def|defgroup|deprecated|details|diafile|dir|docbookonly|dontinclude|dot|dotfile|e|else|elseif|em|endcode|endcond|enddocbookonly|enddot|endhtmlonly|endif|endinternal|endlatexonly|endlink|endmanonly|endmsc|endparblock|endrtfonly|endsecreflist|endverbatim|enduml|endxmlonly|enum|example|exception|extends|file|fn|headerfile|hidecallergraph|hidecallgraph|hideinitializer|htmlinclude|htmlonly|idlexcept|if|ifnot|image|implements|include|includelineno|ingroup|internal|invariant|interface|latexinclude|latexonly|li|line|link|mainpage|manonly|memberof|msc|mscfile|n|name|namespace|nosubgrouping|note|overload|p|package|page|par|paragraph|parblock|post|pre|private|privatesection|property|protected|protectedsection|protocol|public|publicsection|pure|ref|refitem|related|relates|relatedalso|relatesalso|remark|result|return|returns|retval|rtfonly|sa|secreflist|section|see|short|showinitializer|since|skip|skipline|snippet|startuml|struct|subpage|subsection|subsubsection|tableofcontents|test|throw|throws|todo|tparam|typedef|union|until|var|verbatim|verbinclude|version|vhdlflow|warning|weakgroup|xmlonly|xrefitem)\\b)'
     'name':  'comment.block.documentation.cpp'
+
+  'doxygen-param':
+    'match': '([@\\\\]param)\\b(?:\\s*(\\[(?:in|in,out|out)\\]))?'
+    'captures':
+      '1':
+        'name':  'comment.block.documentation.cpp'
+      '2':
+        'name':  'comment.block.documentation.cpp'
 
   # line comment
   'line-comment':
@@ -189,7 +199,10 @@
       'end': '(?=\\n)'
       'name': 'meta.documentation.cpp'
       'patterns': [{
-          'include': '#doxygen-keywords'
+        'include': '#doxygen-keywords'
+      },
+      {
+        'include': '#doxygen-param'
       }]
     }]
 
@@ -205,7 +218,10 @@
       'end': '(?=\\*/)'
       'name': 'meta.documentation.cpp'
       'patterns': [{
-          'include': '#doxygen-keywords'
+        'include': '#doxygen-keywords'
+      },
+      {
+        'include': '#doxygen-param'
       }]
     }]
 
