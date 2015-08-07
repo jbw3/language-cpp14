@@ -1,0 +1,4 @@
+'.source.cpp':
+  'editor':
+    'commentStart': '// '
+    'tabLength': 4
