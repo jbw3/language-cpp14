@@ -2,3 +2,5 @@
   'editor':
     'commentStart': '// '
     'tabLength': 4
+    'increaseIndentPattern': '\\{|:'
+    'decreaseIndentPattern': '(?:^\\s*\\}|\\b(?:case\\b.*|default|private|protected|public):)'
