@@ -27,6 +27,14 @@
     'prefix': 'foreach'
     'body': 'for (${1:int} ${2:var} : ${3:list})\n{\n\t${4:/* code */}\n}'
 
+  'function':
+    'prefix': 'fn'
+    'body': '${1:void} ${2:name}(${3:int arg})\n{\n\t${4:/* code */}\n}'
+
+  'function prototype':
+    'prefix': 'fnp'
+    'body': '${1:void} ${2:name}(${3:int arg});'
+
   'if':
     'prefix': 'if'
     'body': 'if (${1:/* condition */})\n{\n\t${2:/* code */}\n}'
@@ -50,7 +58,6 @@
   'try ... catch':
     'prefix': 'try'
     'body': 'try\n{\n\t${1:/* code */}\n}\ncatch (${2:...})\n{\n\t${3:/* code */}\n}'
-
 
   'while':
     'prefix': 'while'
