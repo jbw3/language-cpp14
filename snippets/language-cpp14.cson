@@ -1,7 +1,15 @@
 '.source.cpp':
+  'cerr':
+    'prefix': 'cerr'
+    'body': 'std::cerr << $1 << "\\\\n";'
+
+  'cin':
+    'prefix': 'cin'
+    'body': 'std::cin >> ${1:var};'
+
   'cout':
     'prefix': 'cout'
-    'body': 'std::cout << ${1} << "\\\\n";'
+    'body': 'std::cout << $1 << "\\\\n";'
 
   'do while':
     'prefix': 'do'
@@ -27,6 +35,10 @@
     'prefix': 'ifelse'
     'body': 'if (${1:/* condition */})\n{\n\t${2:/* code */}\n}\nelse\n{\n\t${3:/* code */}\n}'
 
+  'lambda function':
+    'prefix': 'lambda'
+    'body': '[${1:=}]($2){${3:/* code */}}'
+
   'main()':
     'prefix': 'main'
     'body': 'int main(int argc, char* argv[])\n{\n\t${1}\n\n\treturn 0;\n}'
@@ -34,6 +46,11 @@
   'switch':
     'prefix': 'switch'
     'body': 'switch (${1:var})\n{\ncase ${2:0}:\n\t${3:/* code */}\n\tbreak;\ndefault:\n\t${4:/* code */}\n\tbreak;\n}'
+
+  'try ... catch':
+    'prefix': 'try'
+    'body': 'try\n{\n\t${1:/* code */}\n}\ncatch (${2:...})\n{\n\t${3:/* code */}\n}'
+
 
   'while':
     'prefix': 'while'
