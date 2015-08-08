@@ -7,6 +7,10 @@
     'prefix': 'cin'
     'body': 'std::cin >> ${1:var};'
 
+  'class':
+    'prefix': 'class'
+    'body': 'class ${1:Name}\n{\npublic:\n\t${1:Name}(${2:int arg});\n\n\t~${1:Name}()${3: = default};\n\t${1:Name}(const ${1:Name}& other)${4: = default};\n\t${1:Name}(${1:Name}&& other)${5: = default};\n\t${1:Name}& operator=(const ${1:Name}& other)${6: = default};\n\t${1:Name}& operator=(${1:Name}&& other)${7: = default};\n};'
+
   'cout':
     'prefix': 'cout'
     'body': 'std::cout << $1 << "\\\\n";'
@@ -50,6 +54,10 @@
   'main()':
     'prefix': 'main'
     'body': 'int main(int argc, char* argv[])\n{\n\t${1}\n\n\treturn 0;\n}'
+
+  'struct':
+    'prefix': 'struct'
+    'body': 'struct ${1:Name}\n{\n\t${2:int member};\n};'
 
   'switch':
     'prefix': 'switch'
