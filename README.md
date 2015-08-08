@@ -9,6 +9,7 @@ Syntax highlighting for C++14.
 * Binary literals
 * Digit separators
 * Raw strings
+* C++ snippets
 
 ### Doxygen
 

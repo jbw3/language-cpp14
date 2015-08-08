@@ -1,3 +1,11 @@
+## 0.3.0
+
+### Changes
+
+* Highlighting more doxygen keywords
+* Adding snippets
+* Adding auto-indent settings
+
 ## 0.2.0
 
 ### Changes
