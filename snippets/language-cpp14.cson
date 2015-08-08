@@ -11,6 +11,10 @@
     'prefix': 'class'
     'body': 'class ${1:Name}\n{\npublic:\n\t${1:Name}(${2:int arg});\n\n\t~${1:Name}()${3: = default};\n\t${1:Name}(const ${1:Name}& other)${4: = default};\n\t${1:Name}(${1:Name}&& other)${5: = default};\n\t${1:Name}& operator=(const ${1:Name}& other)${6: = default};\n\t${1:Name}& operator=(${1:Name}&& other)${7: = default};\n};'
 
+  'inherited class':
+    'prefix': 'classin'
+    'body': 'class ${1:Name} : public ${2:Base}\n{\npublic:\n\t${1:Name}(${3:int arg});\n\n\tvirtual ~${1:Name}()${4: = default};\n\t${1:Name}(const ${1:Name}& other)${5: = default};\n\t${1:Name}(${1:Name}&& other)${6: = default};\n\t${1:Name}& operator=(const ${1:Name}& other)${7: = default};\n\t${1:Name}& operator=(${1:Name}&& other)${8: = default};\n};'
+
   'cout':
     'prefix': 'cout'
     'body': 'std::cout << $1 << "\\\\n";'
@@ -66,6 +70,10 @@
   'try ... catch':
     'prefix': 'try'
     'body': 'try\n{\n\t${1:/* code */}\n}\ncatch (${2:...})\n{\n\t${3:/* code */}\n}'
+
+  'union':
+    'prefix': 'union'
+    'body': 'union ${1:Name}\n{\n\t${2:int member};\n};'
 
   'while':
     'prefix': 'while'
