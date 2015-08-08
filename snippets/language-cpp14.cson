@@ -5,15 +5,15 @@
 
   'cin':
     'prefix': 'cin'
-    'body': 'std::cin >> ${1:var};'
+    'body': 'std::cin >> $1;'
 
   'class':
     'prefix': 'class'
-    'body': 'class ${1:Name}\n{\npublic:\n\t${1:Name}(${2:int arg});\n\n\t~${1:Name}()${3: = default};\n\t${1:Name}(const ${1:Name}& other)${4: = default};\n\t${1:Name}(${1:Name}&& other)${5: = default};\n\t${1:Name}& operator=(const ${1:Name}& other)${6: = default};\n\t${1:Name}& operator=(${1:Name}&& other)${7: = default};\n};'
+    'body': 'class ${1:Name}\n{\npublic:\n\t${1:Name}($2);\n\n\t~${1:Name}()${3: = default};\n\t${1:Name}(const ${1:Name}& other)${4: = default};\n\t${1:Name}(${1:Name}&& other)${5: = default};\n\t${1:Name}& operator=(const ${1:Name}& other)${6: = default};\n\t${1:Name}& operator=(${1:Name}&& other)${7: = default};\n};'
 
-  'inherited class':
-    'prefix': 'classin'
-    'body': 'class ${1:Name} : public ${2:Base}\n{\npublic:\n\t${1:Name}(${3:int arg});\n\n\tvirtual ~${1:Name}()${4: = default};\n\t${1:Name}(const ${1:Name}& other)${5: = default};\n\t${1:Name}(${1:Name}&& other)${6: = default};\n\t${1:Name}& operator=(const ${1:Name}& other)${7: = default};\n\t${1:Name}& operator=(${1:Name}&& other)${8: = default};\n};'
+  'derived class':
+    'prefix': 'classder'
+    'body': 'class ${1:Name} : public ${2:Base}\n{\npublic:\n\t${1:Name}($3);\n\n\tvirtual ~${1:Name}()${4: = default};\n\t${1:Name}(const ${1:Name}& other)${5: = default};\n\t${1:Name}(${1:Name}&& other)${6: = default};\n\t${1:Name}& operator=(const ${1:Name}& other)${7: = default};\n\t${1:Name}& operator=(${1:Name}&& other)${8: = default};\n};'
 
   'cout':
     'prefix': 'cout'
@@ -39,7 +39,7 @@
     'prefix': 'fn'
     'body': '${1:void} ${2:name}(${3:int arg})\n{\n\t${4:/* code */}\n}'
 
-  'function prototype':
+  'fn prototype':
     'prefix': 'fnp'
     'body': '${1:void} ${2:name}(${3:int arg});'
 
@@ -71,9 +71,21 @@
     'prefix': 'try'
     'body': 'try\n{\n\t${1:/* code */}\n}\ncatch (${2:...})\n{\n\t${3:/* code */}\n}'
 
+  'typedef':
+    'prefix': 'typedef'
+    'body': 'typedef ${1:int} ${2:name};'
+
   'union':
     'prefix': 'union'
     'body': 'union ${1:Name}\n{\n\t${2:int member};\n};'
+
+  'using':
+    'prefix': 'using'
+    'body': 'using ${1:std::cout};'
+
+  'using namespace':
+    'prefix': 'usingname'
+    'body': 'using namespace ${1:std};'
 
   'while':
     'prefix': 'while'
