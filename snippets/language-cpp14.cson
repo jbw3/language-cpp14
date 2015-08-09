@@ -1,11 +1,4 @@
 '.source.cpp':
-  'cerr':
-    'prefix': 'cerr'
-    'body': 'std::cerr << $1 << "\\\\n";'
-
-  'cin':
-    'prefix': 'cin'
-    'body': 'std::cin >> $1;'
 
   'class':
     'prefix': 'class'
@@ -14,10 +7,6 @@
   'derived class':
     'prefix': 'classder'
     'body': 'class ${1:Name} : public ${2:Base}\n{\npublic:\n\t${1:Name}($3);\n\n\tvirtual ~${1:Name}()${4: = default};\n\t${1:Name}(const ${1:Name}& other)${5: = default};\n\t${1:Name}(${1:Name}&& other)${6: = default};\n\t${1:Name}& operator=(const ${1:Name}& other)${7: = default};\n\t${1:Name}& operator=(${1:Name}&& other)${8: = default};\n};'
-
-  'cout':
-    'prefix': 'cout'
-    'body': 'std::cout << $1 << "\\\\n";'
 
   'do while':
     'prefix': 'do'
@@ -90,3 +79,36 @@
   'while':
     'prefix': 'while'
     'body': 'while (${1:/* condition */})\n{\n\t${2:/* code */}\n}'
+
+# STL
+  'cerr':
+    'prefix': 'cerr'
+    'body': 'std::cerr << $1 << "\\\\n";'
+
+  'cin':
+    'prefix': 'cin'
+    'body': 'std::cin >> $1;'
+
+  'cout':
+    'prefix': 'cout'
+    'body': 'std::cout << $1 << "\\\\n";'
+
+  'STL list':
+    'prefix': 'list'
+    'body': 'std::list<${1:int}> ${2:name};'
+
+  'STL map':
+    'prefix': 'map'
+    'body': 'std::map<${1:std::string}, ${2:std::string}> ${3:name};'
+
+  'STL queue':
+    'prefix': 'queue'
+    'body': 'std::queue<${1:int}> ${2:name};'
+
+  'STL stack':
+    'prefix': 'stack'
+    'body': 'std::stack<${1:int}> ${2:name};'
+
+  'STL vector':
+    'prefix': 'vector'
+    'body': 'std::vector<${1:int}> ${2:name};'
