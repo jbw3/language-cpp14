@@ -107,6 +107,9 @@
       'include': '#namespace'
     },
     {
+      'include': '#enum'
+    },
+    {
       'include': '#class'
     }]
 },
@@ -166,6 +169,9 @@
 },
 {
   'include': '#namespace'
+},
+{
+  'include': '#enum'
 },
 {
   'include': '#class'
@@ -264,9 +270,10 @@
 
   # storage types
   # NOTE: class, struct, and union are highlighted in '#class';
-  # template is highlighted in '#template'
+  # template is highlighted in '#template';
+  # enum is highlighted in '#enum'
   'storage-types':
-    'match': '\\b(?:auto|bool|char|char16_t|char32_t|decltype|double|enum|float|int|long|short|signed|unsigned|void|wchar_t)\\b'
+    'match': '\\b(?:auto|bool|char|char16_t|char32_t|decltype|double|float|int|long|short|signed|unsigned|void|wchar_t)\\b'
     'name': 'storage.type.cpp'
 
   # storage modifiers
@@ -436,6 +443,44 @@
     'patterns': [{
       'match': '\\b([_a-zA-Z]\\w*)\\b'
       'name': 'entity.name.type.cpp'
+    }]
+
+  # enum
+  'enum':
+    'begin': '\\b(enum)\\b'
+    'beginCaptures':
+      '1':
+        'name': 'storage.type.cpp'
+    'end': '(?=;|{)'
+    'name': 'meta.enum-block.cpp'
+    'patterns': [{
+      'match': '\\b(?:class|struct)\\b'
+      'name': 'storage.type.cpp'
+    },
+    {
+      # enum name
+      # TODO: only highlight one
+      'match': '\\b([_a-zA-Z]\\w*)\\b'
+      'name': 'entity.name.type.cpp'
+    },
+    {
+      'begin': ':'
+      'end': '(?=;|{)'
+      'patterns':[{
+        'include': '#line-comment'
+      },
+      {
+        'include': '#block-comment'
+      },
+      {
+        'include': '#storage-types'
+      },
+      {
+        'include': '#storage-modifiers'
+      },
+      {
+        'include': '#support-types'
+      }]
     }]
 
   # class, struct, union
