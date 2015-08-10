@@ -1,3 +1,11 @@
+## 0.4.0
+
+### Changes
+
+* Adding enum highlighting
+* Adding snippets for common STL containers
+* Highlighting \_\_func\_\_, \_\_FILE\_\_, \_\_FUNCTION\_\_, and \_\_LINE\_\_
+
 ## 0.3.0
 
 ### Changes
