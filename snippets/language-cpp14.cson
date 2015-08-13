@@ -93,6 +93,10 @@
     'prefix': 'cout'
     'body': 'std::cout << $1 << "\\\\n";'
 
+  'STL array':
+    'prefix': 'array'
+    'body': 'std::array<${1:int}, ${2:10}> ${3:name};'
+
   'STL list':
     'prefix': 'list'
     'body': 'std::list<${1:int}> ${2:name};'
@@ -108,6 +112,10 @@
   'STL stack':
     'prefix': 'stack'
     'body': 'std::stack<${1:int}> ${2:name};'
+
+  'STL tuple':
+    'prefix': 'tuple'
+    'body': 'std::tuple<${1:int}> ${2:name};'
 
   'STL vector':
     'prefix': 'vector'
