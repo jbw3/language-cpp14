@@ -5,6 +5,7 @@
 * Adding enum highlighting
 * Adding snippets for common STL containers
 * Highlighting \_\_func\_\_, \_\_FILE\_\_, \_\_FUNCTION\_\_, and \_\_LINE\_\_
+* Fixing incorrect highlighting when preceding a function with the insertion operator
 
 ## 0.3.0
 
