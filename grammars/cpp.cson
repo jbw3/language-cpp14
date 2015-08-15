@@ -374,7 +374,7 @@
   # TODO: match across newlines
   # TODO: don't match non-functions in between <>
   'function':
-    'match': '(?:[_a-zA-Z]\\w*(?:\\s*<.*>\\s*)?::)*(?:[_a-zA-Z]\\w*(?:\\s*<.*>\\s*)?)\\s*\\('
+    'match': '(?:[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?::)*(?:[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?)\\s*\\('
     'name': 'meta.function.cpp'
     'captures':
       '0':
