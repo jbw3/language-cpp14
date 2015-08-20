@@ -373,6 +373,9 @@
   # function
   # TODO: match across newlines
   # TODO: don't match non-functions in between <>
+  # TODO: match destructors
+  # TODO: Recursively match template args
+  # TODO: "operator" is not always highlighted
   'function':
     'match': '(?:[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?::)*(?:[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?)\\s*\\('
     'name': 'meta.function.cpp'
