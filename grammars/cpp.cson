@@ -62,6 +62,9 @@
       'include': '#language-constants'
     },
     {
+      'include': '#support-constants'
+    },
+    {
       'include': '#block'
     },
     {
@@ -107,6 +110,9 @@
       'include': '#namespace'
     },
     {
+      'include': '#enum'
+    },
+    {
       'include': '#class'
     }]
 },
@@ -121,6 +127,9 @@
 },
 {
   'include': '#language-constants'
+},
+{
+  'include': '#support-constants'
 },
 {
   'include': '#block'
@@ -166,6 +175,9 @@
 },
 {
   'include': '#namespace'
+},
+{
+  'include': '#enum'
 },
 {
   'include': '#class'
@@ -264,9 +276,10 @@
 
   # storage types
   # NOTE: class, struct, and union are highlighted in '#class';
-  # template is highlighted in '#template'
+  # template is highlighted in '#template';
+  # enum is highlighted in '#enum'
   'storage-types':
-    'match': '\\b(?:auto|bool|char|char16_t|char32_t|decltype|double|enum|float|int|long|short|signed|unsigned|void|wchar_t)\\b'
+    'match': '\\b(?:auto|bool|char|char16_t|char32_t|decltype|double|float|int|long|short|signed|unsigned|void|wchar_t)\\b'
     'name': 'storage.type.cpp'
 
   # storage modifiers
@@ -276,13 +289,18 @@
 
   # language constants
   'language-constants':
-    'match': '\\b(?:false|nullptr|true)\\b'
+    'match': '\\b(?:__func__|false|nullptr|true)\\b'
     'name': 'constant.language.cpp'
 
   # support types
   'support-types':
     'match': '\\b(?:int8_t|int16_t|int32_t|int64_t|int_fast8_t|int_fast16_t|int_fast32_t|int_fast64_t|int_least8_t|int_least16_t|int_least32_t|int_least64_t|intmax_t|intptr_t|size_t|uint|uint8_t|uint16_t|uint32_t|uint64_t|uint_fast8_t|uint_fast16_t|uint_fast32_t|uint_fast64_t|uint_least8_t|uint_least16_t|uint_least32_t|uint_least64_t|uintmax_t|uintptr_t)\\b'
     'name': 'support.type.cpp'
+
+  # support constants
+  'support-constants':
+    'match': '\\b(?:__FILE__|__FUNCTION__|__LINE__)\\b'
+    'name': 'support.constant.cpp'
 
   # language variables
   'language-variables':
@@ -355,8 +373,11 @@
   # function
   # TODO: match across newlines
   # TODO: don't match non-functions in between <>
+  # TODO: match destructors
+  # TODO: Recursively match template args
+  # TODO: "operator" is not always highlighted
   'function':
-    'match': '(?:[_a-zA-Z]\\w*(?:\\s*<.*>\\s*)?::)*(?:[_a-zA-Z]\\w*(?:\\s*<.*>\\s*)?)\\s*\\('
+    'match': '(?:[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?::)*(?:[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?)\\s*\\('
     'name': 'meta.function.cpp'
     'captures':
       '0':
@@ -408,6 +429,9 @@
       'include': '#language-constants'
     },
     {
+      'include': '#support-constants'
+    },
+    {
       'include': '#language-variables'
     },
     {
@@ -436,6 +460,44 @@
     'patterns': [{
       'match': '\\b([_a-zA-Z]\\w*)\\b'
       'name': 'entity.name.type.cpp'
+    }]
+
+  # enum
+  'enum':
+    'begin': '\\b(enum)\\b'
+    'beginCaptures':
+      '1':
+        'name': 'storage.type.cpp'
+    'end': '(?=;|{)'
+    'name': 'meta.enum-block.cpp'
+    'patterns': [{
+      'match': '\\b(?:class|struct)\\b'
+      'name': 'storage.type.cpp'
+    },
+    {
+      # enum name
+      # TODO: only highlight one
+      'match': '\\b([_a-zA-Z]\\w*)\\b'
+      'name': 'entity.name.type.cpp'
+    },
+    {
+      'begin': ':'
+      'end': '(?=;|{)'
+      'patterns':[{
+        'include': '#line-comment'
+      },
+      {
+        'include': '#block-comment'
+      },
+      {
+        'include': '#storage-types'
+      },
+      {
+        'include': '#storage-modifiers'
+      },
+      {
+        'include': '#support-types'
+      }]
     }]
 
   # class, struct, union
@@ -508,6 +570,9 @@
         },
         {
           'include': '#language-constants'
+        },
+        {
+          'include': '#support-constants'
         },
         {
           'include': '#storage-types'
