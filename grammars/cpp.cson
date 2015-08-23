@@ -389,6 +389,10 @@
           }]
         },
         {
+          'match': '\\boperator\\b'
+          'name': 'keyword.control.cpp'
+        },
+        {
           'match': '[_a-zA-Z]\\w*'
           'name': 'entity.name.function.cpp'
         }]
