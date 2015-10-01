@@ -1,3 +1,9 @@
+## 0.4.1
+
+## Changes
+
+* Fixing a bug where operator overload functions were not highlighted
+
 ## 0.4.0
 
 ### Changes
