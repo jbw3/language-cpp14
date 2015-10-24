@@ -463,6 +463,12 @@
     'patterns': [{
       'match': '\\b([_a-zA-Z]\\w*)\\b'
       'name': 'entity.name.type.cpp'
+    },
+    {
+      'include': '#line-comment'
+    },
+    {
+      'include': '#block-comment'
     }]
 
   # enum
@@ -482,6 +488,12 @@
       # TODO: only highlight one
       'match': '\\b([_a-zA-Z]\\w*)\\b'
       'name': 'entity.name.type.cpp'
+    },
+    {
+      'include': '#line-comment'
+    },
+    {
+      'include': '#block-comment'
     },
     {
       'begin': ':'

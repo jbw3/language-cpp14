@@ -1,6 +1,12 @@
+## 0.4.2
+
+### Changes
+
+* Fixing a bug where comments were not highlighted around namespaces and enums
+
 ## 0.4.1
 
-## Changes
+### Changes
 
 * Fixing a bug where operator overload functions were not highlighted
 
