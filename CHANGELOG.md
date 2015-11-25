@@ -1,3 +1,10 @@
+## 0.5.0
+
+### Changes
+
+* Highlighting C++ attributes
+* Doxygen keywords are now highlighted by default
+
 ## 0.4.2
 
 ### Changes
