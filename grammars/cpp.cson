@@ -381,10 +381,9 @@
   # function
   # TODO: match across newlines
   # TODO: don't match non-functions in between <>
-  # TODO: match destructors
   # TODO: Recursively match template args
   'function':
-    'match': '(?:[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?::)*(?:(?:[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?)|(?:operator\\b[^\\(]+))\\s*\\('
+    'match': '(?:[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?::)*(?:(?:~?[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?)|(?:operator\\b[^\\(]+))\\s*\\('
     'name': 'meta.function.cpp'
     'captures':
       '0':
@@ -400,7 +399,7 @@
           'name': 'keyword.control.cpp'
         },
         {
-          'match': '[_a-zA-Z]\\w*'
+          'match': '~?[_a-zA-Z]\\w*'
           'name': 'entity.name.function.cpp'
         }]
 
