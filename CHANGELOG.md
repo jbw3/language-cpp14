@@ -4,6 +4,7 @@
 
 * Highlighting C++ attributes
 * Doxygen keywords are now highlighted by default
+* Recognizing more C++ file extensions (cc, cp, cxx, inl)
 
 ## 0.4.2
 
