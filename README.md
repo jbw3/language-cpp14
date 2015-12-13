@@ -14,7 +14,7 @@ Syntax highlighting for C++14.
 
 ### Doxygen
 
-This package marks doxygen keywords. However, many syntax themes do not highlight them. If your theme does not, you can enable highlighting by adding the following to your styles.less file:
+This package marks doxygen keywords. Most syntax themes will highlight them with the same color as keywords. To change this, add the following to your styles.less file:
 
 ```less
 atom-text-editor::shadow .keyword.other.documentation
