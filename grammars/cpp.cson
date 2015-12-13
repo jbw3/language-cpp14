@@ -2,9 +2,13 @@
 'name': 'C++14'
 
 'fileTypes': [
-    'cpp'
-    'h'
-    'hpp'
+  'cc'
+  'cp'
+  'cpp'
+  'cxx'
+  'h'
+  'hpp'
+  'inl'
 ]
 
 # control keywords
