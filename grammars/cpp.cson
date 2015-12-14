@@ -644,5 +644,14 @@
         'name': 'keyword.other.cpp'
       },
       {
+        'include': '#line-comment'
+      },
+      {
+        'include': '#block-comment'
+      },
+      {
         'include': '#string'
+      },
+      {
+        'include': "#raw-string"
       }]
