@@ -119,6 +119,9 @@
     },
     {
       'include': '#class'
+    },
+    {
+      'include': '#attributes'
     }]
 },
 {
