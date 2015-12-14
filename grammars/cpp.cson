@@ -2,9 +2,13 @@
 'name': 'C++14'
 
 'fileTypes': [
-    'cpp'
-    'h'
-    'hpp'
+  'cc'
+  'cp'
+  'cpp'
+  'cxx'
+  'h'
+  'hpp'
+  'inl'
 ]
 
 # control keywords
@@ -17,6 +21,7 @@
   # keywords
   'patterns': [{
     # keywords
+    # TODO: keywords should not be included for error, pragma, and warning
     # NOTE: include is defined below
       'match': '#\\s*(define|elif|else|endif|error|if|ifdef|ifndef|line|pragma|undef|warning)\\b'
       'captures':
@@ -181,6 +186,9 @@
 },
 {
   'include': '#class'
+},
+{
+  'include': '#attributes'
 }]
 
 'repository':
@@ -189,15 +197,15 @@
   # TODO: mark @f{ and @f}
   'doxygen-keywords':
     'match': '[@\\\\](?:(?:{|}|f\\$|f\\[|f\\]|\\$|@|\\\\|&|~|<|>|#|%|"|\\.|::|\\||-{2,3})|(?:a|addindex|addtogroup|anchor|arg|attention|author|authors|b|brief|bug|c|callergraph|callgraph|category|cite|class|code|cond|copybrief|copydetails|copydoc|copyright|date|def|defgroup|deprecated|details|diafile|dir|docbookonly|dontinclude|dot|dotfile|e|else|elseif|em|endcode|endcond|enddocbookonly|enddot|endhtmlonly|endif|endinternal|endlatexonly|endlink|endmanonly|endmsc|endparblock|endrtfonly|endsecreflist|endverbatim|enduml|endxmlonly|enum|example|exception|extends|file|fn|headerfile|hidecallergraph|hidecallgraph|hideinitializer|htmlinclude|htmlonly|idlexcept|if|ifnot|image|implements|include|includelineno|ingroup|internal|invariant|interface|latexinclude|latexonly|li|line|link|mainpage|manonly|memberof|msc|mscfile|n|name|namespace|nosubgrouping|note|overload|p|package|page|par|paragraph|parblock|post|pre|private|privatesection|property|protected|protectedsection|protocol|public|publicsection|pure|ref|refitem|related|relates|relatedalso|relatesalso|remark|result|return|returns|retval|rtfonly|sa|secreflist|section|see|short|showinitializer|since|skip|skipline|snippet|startuml|struct|subpage|subsection|subsubsection|tableofcontents|test|throw|throws|todo|tparam|typedef|union|until|var|verbatim|verbinclude|version|vhdlflow|warning|weakgroup|xmlonly|xrefitem)\\b)'
-    'name':  'comment.block.documentation.cpp'
+    'name':  'comment.block.documentation.cpp keyword.other.documentation.doxygen'
 
   'doxygen-param':
     'match': '([@\\\\]param)\\b(?:\\s*(\\[(?:in|in,out|out)\\]))?'
     'captures':
       '1':
-        'name':  'comment.block.documentation.cpp'
+        'name':  'comment.block.documentation.cpp keyword.other.documentation.doxygen'
       '2':
-        'name':  'comment.block.documentation.cpp'
+        'name':  'comment.block.documentation.cpp keyword.other.documentation.doxygen'
 
   # line comment
   'line-comment':
@@ -373,10 +381,9 @@
   # function
   # TODO: match across newlines
   # TODO: don't match non-functions in between <>
-  # TODO: match destructors
   # TODO: Recursively match template args
   'function':
-    'match': '(?:[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?::)*(?:(?:[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?)|(?:operator\\b[^\\(]+))\\s*\\('
+    'match': '(?:[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?::)*(?:(?:~?[_a-zA-Z]\\w*(?:\\s*<(?:[^<].*)?>\\s*)?)|(?:operator\\b[^\\(]+))\\s*\\('
     'name': 'meta.function.cpp'
     'captures':
       '0':
@@ -392,7 +399,7 @@
           'name': 'keyword.control.cpp'
         },
         {
-          'match': '[_a-zA-Z]\\w*'
+          'match': '~?[_a-zA-Z]\\w*'
           'name': 'entity.name.function.cpp'
         }]
 
@@ -627,3 +634,24 @@
           'include': '#function'
         }]
     }]
+
+  'attributes':
+    'begin': '\\[\\s*\\['
+    'end': '\\]\\s*\\]'
+    'name': 'meta.attributes.cpp'
+    'patterns': [{
+        'match': '\\b(?:carries_dependency|deprecated|noreturn)\\b'
+        'name': 'keyword.other.cpp'
+      },
+      {
+        'include': '#line-comment'
+      },
+      {
+        'include': '#block-comment'
+      },
+      {
+        'include': '#string'
+      },
+      {
+        'include': "#raw-string"
+      }]
