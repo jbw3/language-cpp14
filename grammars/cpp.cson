@@ -29,9 +29,8 @@
   # keywords
   'patterns': [{
     # keywords
-    # TODO: keywords should not be included for error, pragma, and warning
-    # NOTE: include is defined below
-      'match': '#\\s*(define|elif|else|endif|error|if|ifdef|ifndef|line|pragma|undef|warning)\\b'
+    # NOTE: error, include, pragma, and warning are defined below
+      'match': '#\\s*(define|elif|else|endif|if|ifdef|ifndef|line|undef)\\b'
       'captures':
         '1':
           'name': 'keyword.control.cpp'
@@ -56,6 +55,21 @@
           'name': 'string.quoted.other.lt-gt.include.cpp'
         },
         {
+          'include': '#line-comment'
+        },
+        {
+          'include': '#block-comment'
+        }]
+    },
+    # TODO: highlight common pragma keywords
+    # error, pragma, and warning
+    {
+      'begin': '#\\s*(error|pragma|warning)\\b'
+      'beginCaptures':
+        '1':
+          'name': 'keyword.control.cpp'
+      'end': '(?<!\\\\)(?=\\n)'
+      'patterns': [{
           'include': '#line-comment'
         },
         {
