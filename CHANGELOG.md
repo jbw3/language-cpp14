@@ -1,3 +1,10 @@
+## 0.6.0
+
+### Changes
+
+* Adding more file extensions
+* No longer highlighting keywords in the error, pragma, and warning preprocessor directives
+
 ## 0.5.0
 
 ### Changes
