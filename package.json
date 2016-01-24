@@ -1,6 +1,6 @@
 {
   "name": "language-cpp14",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "C++14 language support including new keywords, raw strings, digit separators, and binary literals",
   "keywords": [
     "C++",
