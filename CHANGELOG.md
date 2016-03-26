@@ -1,3 +1,9 @@
+## 0.6.1
+
+### Changes
+
+* Fixing incorrect indentation in some switch statements (thanks to vmrob!)
+
 ## 0.6.0
 
 ### Changes
