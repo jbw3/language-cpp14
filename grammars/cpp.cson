@@ -607,6 +607,10 @@
         'begin': '(?=<)'
         'end': '(?=>)'
         'patterns': [{
+          # recursively include template again
+          'include': '#template'
+        },
+        {
           'include': '#block-comment'
         },
         {

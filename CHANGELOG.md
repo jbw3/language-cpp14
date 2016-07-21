@@ -1,3 +1,10 @@
+## 0.6.2
+
+### Changes
+
+* Fixing incorrect highlighting with a template of a template
+
+
 ## 0.6.1
 
 ### Changes
